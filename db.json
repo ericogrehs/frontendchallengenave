@@ -2,13 +2,17 @@
   "users": [
     {
       "id": 1,
-      "name": "json-server",
-      "vacancy": "typicode"
+      "name": "Erico",
+      "vacancy": "Desenvolvedor Front-End",
+      "birthday": "11/04/1992",
+      "email": "ericogrehs@gmail.com"
     },
     {
       "id": 2,
-      "name": "json-server",
-      "vacancy": "typicode"
+      "name": "Juca",
+      "vacancy": "Back-end",
+      "birthday": "01/01/1995",
+      "email": "juca@gmail.com"
     }
   ]
 }

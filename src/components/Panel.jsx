@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import UserTable from './UserTable';
+
+import { Button, Title } from '../themes/DefaultStyles';
 
 const Container = styled.div`
     display: flex;
@@ -19,14 +22,15 @@ const ContainerMenu = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 `;
 
 export default function Panel() {
     return (
         <Container>
             <ContainerMenu>
-                <h1>Title</h1>
-                <button>Click</button>
+                <Title primary>Usuários</Title>
+                <Button>Criar</Button>
             </ContainerMenu>
             <UserTable />
         </Container>

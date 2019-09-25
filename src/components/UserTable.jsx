@@ -12,6 +12,7 @@ const Container = styled.div`
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     overflow: auto;
+    margin-top: 24px;
 `;
 
 export default function UserTable() {

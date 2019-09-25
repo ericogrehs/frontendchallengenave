@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { navigate } from 'hookrouter';
 
 import UserTable from '../components/UserTable';
 
@@ -16,7 +16,6 @@ const Container = styled.div`
     }
 `;
 
-
 const ContainerMenu = styled.div`
     display: flex;
     flex-direction: row;
@@ -29,9 +28,7 @@ export default function Panel() {
         <Container>
             <ContainerMenu>
                 <Title primary>Usuários</Title>
-                <Link to="/create-user">
-                    <Button>Criar</Button>
-                </Link>
+                <Button onClick={() => navigate('/create-user')}>Criar</Button>
             </ContainerMenu>
             <UserTable />
         </Container>

@@ -26,6 +26,13 @@ export const Button = styled.button`
     }
 `;
 
+export const StrechedButton = styled(Button)`
+    width: 264px;
+    @media only screen and (min-width: 1024px) {
+        width: 280px;
+    }
+`;
+
 export const Title = styled.h4`
     font-family: Roboto;
     font-style: normal;
@@ -41,4 +48,20 @@ export const Title = styled.h4`
         else return `color: #000000;`
     }}
     ;
+`;
+
+export const DefaultScreenContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow: auto;
+    margin: 24px;
+    padding: 24px;
+    height: 448px;
+    @media only screen and (min-width: 1024px) {
+        margin: 32px;
+        margin-top: 24px;
+    }
 `;

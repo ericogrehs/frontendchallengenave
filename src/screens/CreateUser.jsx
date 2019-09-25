@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import Snackbar from '@material-ui/core/Snackbar';
 
-import { Title } from '../themes/DefaultStyles';
-import { Container, Form, CustomTextField, StrechedButton } from '../themes/CreateUser';
+import { Title, DefaultScreenContainer } from '../themes/DefaultStyles';
+import { Form, CustomTextField, StrechedButton } from '../themes/CreateUser';
 
 const TextMaskCustom = ({ inputRef, ...other }) => {
     return (
@@ -72,7 +72,7 @@ export default function CreateUser() {
     }
 
     return (
-        <Container>
+        <DefaultScreenContainer>
             <Form onSubmit={handleCreateNewUser}>
                 <Title secondary>Criar Usuário</Title>
                 <CustomTextField
@@ -137,6 +137,6 @@ export default function CreateUser() {
                     message={<span id="message-id">{snackbarMessage}</span>}
                 />
             </Form>
-        </Container>
+        </DefaultScreenContainer>
     );
 }

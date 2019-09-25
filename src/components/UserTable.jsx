@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { A } from 'hookrouter';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -43,7 +45,7 @@ export default function UserTable() {
                     {users.map(user => (
                         <TableRow key={user.id}>
                             <TableCell component="th" scope="row">
-                                <a href="!#">{user.id}</a>
+                                <A href={`/info-user/${user.id}`}>{user.id}</A>
                             </TableCell>
                             <TableCell align="right">{user.name}</TableCell>
                             <TableCell align="right">{user.vacancy}</TableCell>

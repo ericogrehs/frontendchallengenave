@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { useRoutes } from 'hookrouter';
 
 import Navbar from './components/Navbar';
 import Panel from './screens/Panel';
 import CreateUser from './screens/CreateUser';
+import InfoUser from './screens/InfoUser';
 
 const Container = styled.div`
 	display: flex;
@@ -13,16 +14,20 @@ const Container = styled.div`
 	background-color: #F0F0F0;
 `;
 
+const routes = {
+	'/': () => <Panel />,
+	'/create-user': () => <CreateUser />,
+	'/info-user/:id': ({ id }) => <InfoUser id={id} />
+};
+
 function App() {
+	const routeResult = useRoutes(routes);
+
 	return (
-		<Router>
-			<Container>
-				<Navbar />
-				<Route exact path="/" component={Panel} />
-				<Route path="/create-user" component={CreateUser} />
-				{/* <Route path="/info-user" component={InfoUser} /> */}
-			</Container>
-		</Router>
+		<Container>
+			<Navbar />
+			{routeResult}
+		</Container>
 	);
 }
 

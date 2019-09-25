@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { navigate } from 'hookrouter';
 
 import logoNave from "../images/navelogobranco.png";
 
@@ -19,14 +19,13 @@ const Logo = styled.img`
     margin-left: 32px;
     width: 128px;
     height: 32px;
+    cursor: pointer;
 `;
 
 export default function Navbar() {
     return (
         <Container>
-            <Link to="/">
-                <Logo src={logoNave} alt="Logo da Nave"/>
-            </Link>
+            <Logo src={logoNave} alt="Logo da Nave" onClick={() => navigate('/')}/>
         </Container>
     );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import logoNave from "../images/navelogobranco.png";
 
@@ -23,7 +24,9 @@ const Logo = styled.img`
 export default function Navbar() {
     return (
         <Container>
-            <Logo src={logoNave} alt="Logo da Nave"/>
+            <Link to="/">
+                <Logo src={logoNave} alt="Logo da Nave"/>
+            </Link>
         </Container>
     );
 }

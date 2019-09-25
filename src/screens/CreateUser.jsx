@@ -5,7 +5,7 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 
 import { Title } from '../themes/DefaultStyles';
-import { Container, Form, CustomTextField, StrechedButton } from './CreateUser';
+import { Container, Form, CustomTextField, StrechedButton } from '../themes/CreateUser';
 
 const TextMaskCustom = ({ inputRef, ...other }) => {
     return (

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
-import { Button } from '../themes/DefaultStyles';
+import { Button } from './DefaultStyles';
 
 export const Container = styled.div`
     display: flex;

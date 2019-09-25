@@ -32,6 +32,8 @@ export const Title = styled.h4`
     font-weight: 500;
     font-size: 24px;
     line-height: 28px;
+    margin: 0px;
+    padding: 0px;
 
     ${props => {
         if (props.primary) return `color: #000000;`

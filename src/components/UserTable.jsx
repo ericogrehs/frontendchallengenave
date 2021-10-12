@@ -3,21 +3,13 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { A } from 'hookrouter'
 
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 
-const Container = styled.div`
-  background-color: #ffffff;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  overflow: auto;
-  margin-top: 24px;
-`
-
-export default function UserTable() {
+function UserTable() {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -27,7 +19,6 @@ export default function UserTable() {
     }
     fetchUsers()
   }, [])
-
   return (
     <Container>
       <Table>
@@ -57,3 +48,13 @@ export default function UserTable() {
     </Container>
   )
 }
+
+const Container = styled.div`
+  background-color: #ffffff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: auto;
+  margin-top: 24px;
+`
+
+export default UserTable

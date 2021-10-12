@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import MaskedInput from 'react-text-mask'
 import axios from 'axios'
+import Snackbar from '@mui/material/Snackbar'
 
-import Snackbar from '@material-ui/core/Snackbar'
+import TextField from '../components/TextField'
 
 import { Title, DefaultScreenContainer } from '../themes/DefaultStyles'
-import { Form, CustomTextField, StrechedButton } from '../themes/CreateUser'
+import { Form, StrechedButton } from '../themes/CreateUser'
 
 const TextMaskCustom = ({ inputRef, ...other }) => {
   return (
@@ -76,7 +77,7 @@ export default function CreateUser() {
     <DefaultScreenContainer>
       <Form onSubmit={handleCreateNewUser}>
         <Title secondary>Criar Usuário</Title>
-        <CustomTextField
+        <TextField
           required
           id='name'
           label='Nome'
@@ -84,7 +85,7 @@ export default function CreateUser() {
           value={name}
           onChange={event => setName(event.target.value)}
         />
-        <CustomTextField
+        <TextField
           required
           id='vacancy'
           label='Vaga'
@@ -92,7 +93,7 @@ export default function CreateUser() {
           value={vacancy}
           onChange={event => setVacancy(event.target.value)}
         />
-        <CustomTextField
+        <TextField
           required
           id='birthday'
           label='Data de Nascimento'
@@ -112,7 +113,7 @@ export default function CreateUser() {
             value: birthday,
           }}
         />
-        <CustomTextField
+        <TextField
           required
           id='email'
           label='E-mail'

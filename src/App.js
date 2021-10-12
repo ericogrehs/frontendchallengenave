@@ -2,6 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { useRoutes } from 'hookrouter'
 
+import brLocale from 'date-fns/locale/pt-BR'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+
 import Navbar from './components/Navbar'
 import Panel from './screens/Panel'
 import CreateUser from './screens/CreateUser'
@@ -24,10 +28,12 @@ function App() {
   const routeResult = useRoutes(routes)
 
   return (
-    <Container>
-      <Navbar />
-      {routeResult}
-    </Container>
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={brLocale}>
+      <Container>
+        <Navbar />
+        {routeResult}
+      </Container>
+    </LocalizationProvider>
   )
 }
 

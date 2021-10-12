@@ -39,12 +39,7 @@ export const Title = styled.h4`
   line-height: 28px;
   margin: 0px;
   padding: 0px;
-
-  ${props => {
-    if (props.primary) return `color: #000000;`
-    if (props.secondary) return `color: #7C7C7C;`
-    else return `color: #000000;`
-  }};
+  color: ${props => (props.secondary ? '#7C7C7C' : '#000000')};
 `
 
 export const DefaultScreenContainer = styled.div`

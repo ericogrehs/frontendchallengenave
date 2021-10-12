@@ -19,6 +19,7 @@ function UserTable() {
     }
     fetchUsers()
   }, [])
+
   return (
     <Container>
       <Table>
@@ -38,8 +39,8 @@ function UserTable() {
                 <A href={`/info-user/${user.id}`}>{user.id}</A>
               </TableCell>
               <TableCell align='right'>{user.name}</TableCell>
-              <TableCell align='right'>{user.vacancy}</TableCell>
-              <TableCell align='right'>{user.birthday}</TableCell>
+              <TableCell align='right'>{user.job}</TableCell>
+              <TableCell align='right'>{user.birthdate}</TableCell>
               <TableCell align='right'>{user.email}</TableCell>
             </TableRow>
           ))}

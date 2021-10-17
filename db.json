@@ -6,6 +6,13 @@
       "birthdate": "01/01/2000",
       "email": "erico@gmail.com",
       "id": 1
+    },
+    {
+      "name": "Érico",
+      "job": "vaga 1",
+      "birthdate": "05/08/2000",
+      "email": "erico@gmail.com",
+      "id": 2
     }
   ]
 }

@@ -9,29 +9,7 @@ import {
   StrechedButton,
 } from '../themes/DefaultStyles'
 
-const Container = styled(DefaultScreenContainer)`
-  && {
-    align-items: initial;
-    justify-content: start;
-    height: 100%;
-  }
-`
-
-const Field = styled.h6`
-  margin: 0px;
-  margin-top: 24px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #000000;
-`
-
-const Button = styled(StrechedButton)`
-  margin-top: 24px;
-`
-
-export default function InfoUser({ id }) {
+function InfoUser({ id }) {
   const [userInfo, setUserInfo] = useState({})
 
   useEffect(() => {
@@ -58,3 +36,27 @@ export default function InfoUser({ id }) {
     </Container>
   )
 }
+
+const Container = styled(DefaultScreenContainer)`
+  && {
+    align-items: initial;
+    justify-content: start;
+    height: 100%;
+  }
+`
+
+const Field = styled.h6`
+  margin: 0px;
+  margin-top: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+`
+
+const Button = styled(StrechedButton)`
+  margin-top: 24px;
+`
+
+export default InfoUser

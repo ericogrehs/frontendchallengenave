@@ -6,6 +6,18 @@ import UserTable from '../components/UserTable'
 
 import { Button, Title } from '../themes/DefaultStyles'
 
+function Panel() {
+  return (
+    <Container>
+      <ContainerMenu>
+        <Title primary>Usuários</Title>
+        <Button onClick={() => navigate('/create-user')}>Criar</Button>
+      </ContainerMenu>
+      <UserTable />
+    </Container>
+  )
+}
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,14 +35,4 @@ const ContainerMenu = styled.div`
   align-items: center;
 `
 
-export default function Panel() {
-  return (
-    <Container>
-      <ContainerMenu>
-        <Title primary>Usuários</Title>
-        <Button onClick={() => navigate('/create-user')}>Criar</Button>
-      </ContainerMenu>
-      <UserTable />
-    </Container>
-  )
-}
+export default Panel

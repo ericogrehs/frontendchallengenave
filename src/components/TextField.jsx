@@ -1,15 +1,15 @@
-import MuiTextField from '@mui/material/TextField'
-import styled from 'styled-components'
+import { forwardRef } from 'react'
 
-function TextField(props) {
-  return <CustomTextField variant='standard' {...props} />
-}
+import DefaultTextField from '../styles/DefaultTextField'
 
-export const CustomTextField = styled(MuiTextField)`
-  height: 48px;
-  width: 264px;
-  @media only screen and (min-width: 1024px) {
-    width: 280px;
-  }
-`
+const TextField = forwardRef(({ error, ...props }, ref) => (
+  <DefaultTextField
+    variant='standard'
+    ref={ref}
+    error={Boolean(error)}
+    helperText={error}
+    {...props}
+  />
+))
+
 export default TextField

@@ -1,134 +1,83 @@
-import React, { useState } from 'react'
-import MaskedInput from 'react-text-mask'
+import { useState } from 'react'
 import axios from 'axios'
 import Snackbar from '@mui/material/Snackbar'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { format } from 'date-fns'
 
 import TextField from '../components/TextField'
+import DateField from '../components/DateField'
+
+import { createUserForm } from '../schemas/users'
 
 import { Title, DefaultScreenContainer } from '../themes/DefaultStyles'
 import { Form, StrechedButton } from '../themes/CreateUser'
 
-const TextMaskCustom = ({ inputRef, ...other }) => {
-  return (
-    <MaskedInput
-      {...other}
-      mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'_'}
-    />
-  )
-}
+function CreateUser() {
+  const [open, setOpen] = useState(false)
+  const [snackbarMessage, setSnackbarMessage] = useState('')
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(createUserForm),
+    defaultValues: {
+      name: '',
+      job: '',
+      birthdate: null,
+      email: '',
+    },
+  })
 
-export default function CreateUser() {
-  const [name, setName] = useState('')
-  const [vacancy, setVacancy] = useState('')
-  const [birthday, setBirthday] = useState('')
-  const [isBirthdayCorrect, setIsBirthdayCorrect] = useState(true)
-  const [email, setEmail] = useState('')
-  const [isEmailCorrect, setIsEmailCorrect] = useState(true)
-  const [open, setOpen] = React.useState(false)
-  const [snackbarMessage, setSnackbarMessage] = React.useState('')
+  const onSubmit = async data => {
+    try {
+      const body = {
+        name: data.name,
+        job: data.job,
+        birthdate: format(new Date(data.birthdate), 'dd/MM/yyyy'),
+        email: data.email,
+      }
 
-  async function handleCreateNewUser(event) {
-    event.preventDefault()
+      let response = await axios.post('http://localhost:3000/users', body)
 
-    if (!isBirthdayCorrect) {
-      setSnackbarMessage('Data de nascimento incorreta')
-      setOpen(true)
-      return
-    }
-
-    if (!isEmailCorrect) {
-      setSnackbarMessage('Email incorreto')
-      setOpen(true)
-      return
-    }
-
-    let response = await axios.post('http://localhost:3000/users', {
-      name,
-      vacancy,
-      birthday,
-      email,
-    })
-
-    if ((response.status === 200) | 201) {
-      setSnackbarMessage('Usuário criado com sucesso')
-      setOpen(true)
-      clearForm()
-    } else {
+      if ((response.status === 200) | 201) {
+        setSnackbarMessage('Usuário criado com sucesso')
+        setOpen(true)
+        reset()
+      }
+    } catch (error) {
       setSnackbarMessage('Erro ao criar novo usuário')
       setOpen(true)
     }
   }
 
-  function handleFocus(event) {
-    event.target.select()
-  }
-
-  function clearForm() {
-    setName('')
-    setVacancy('')
-    setBirthday('')
-    setIsBirthdayCorrect(true)
-    setEmail('')
-    setIsEmailCorrect(true)
-  }
-
   return (
     <DefaultScreenContainer>
-      <Form onSubmit={handleCreateNewUser}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Title secondary>Criar Usuário</Title>
         <TextField
-          required
-          id='name'
-          label='Nome'
-          margin='none'
-          value={name}
-          onChange={event => setName(event.target.value)}
+          label='Nome *'
+          error={errors.name?.message}
+          {...register('name')}
         />
         <TextField
-          required
-          id='vacancy'
-          label='Vaga'
-          margin='none'
-          value={vacancy}
-          onChange={event => setVacancy(event.target.value)}
+          label='Vaga *'
+          error={errors.job?.message}
+          {...register('job')}
+        />
+        <DateField
+          name='birthdate'
+          control={control}
+          label='Data de Nascimento *'
+          error={errors.birthdate?.message}
         />
         <TextField
-          required
-          id='birthday'
-          label='Data de Nascimento'
-          margin='none'
-          placeholder='##/##/####'
-          value={birthday}
-          error={!isBirthdayCorrect}
-          onFocus={handleFocus}
-          onChange={event => {
-            setBirthday(event.target.value)
-            setIsBirthdayCorrect(
-              /\d\d\/\d\d\/\d\d\d\d/.test(event.target.value)
-            )
-          }}
-          InputProps={{
-            inputComponent: TextMaskCustom,
-            value: birthday,
-          }}
-        />
-        <TextField
-          required
-          id='email'
-          label='E-mail'
-          margin='none'
-          value={email}
-          onChange={event => {
-            setEmail(event.target.value)
-            setIsEmailCorrect(
-              // eslint-disable-next-line no-control-regex
-              /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/.test(
-                event.target.value
-              )
-            )
-          }}
-          error={!isEmailCorrect}
+          label='Email *'
+          error={errors.email?.message}
+          {...register('email')}
         />
         <StrechedButton type='submit'>ENVIAR</StrechedButton>
         <Snackbar
@@ -148,3 +97,5 @@ export default function CreateUser() {
     </DefaultScreenContainer>
   )
 }
+
+export default CreateUser
